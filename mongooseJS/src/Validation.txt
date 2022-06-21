@@ -1,0 +1,43 @@
+
+//Built-In validators
+
+course:{
+    type: string
+    required:true
+    lowercase:true
+    uppercase:true
+    unique: true
+    trim: true
+    minlength: [2, "minimum 2 letters"]      - //optional custom message
+    enum:["react", "Nodejs"]                 - only these 2 can be the input
+}
+
+//custom validator
+
+videos: {
+    type: Number,
+        
+    validate(value){
+        if(value < 0){
+            throw new Error("Video count can't be -ve");
+        }
+    }
+},
+
+// NPM validators
+
+-- mpm install validators --
+
+Note: we dont need to write lengthy validator functions manually
+>> code
+
+const validator = require('validator');
+videos: {
+    type: Number,
+        
+    validate(value){
+        if( !validator.isEmail(value) ){
+            throw new Error("invalid email");
+        }
+    }
+},

@@ -1,0 +1,55 @@
+collection - table
+document - tuple
+field - attributes
+
+
+show dbs
+use company                   -db name
+show collections              -show tables list
+db.employee.find()           -show this table
+
+CRUD
+
+1. Create/insert :
+db.employee.insertOne({name:"Keshav", active:'true", salary:"90000"})       - insert document(tuple)
+            insertMany([{ },{ }])
+
+----------------------------------------------------------------------------
+
+2. Read :
+db.employee.find(query, projection)
+
+//show name of employee with status active
+                        //means name = true
+db.employee.find({active:"true}, {name:1})
+
+//show first employee with status active true
+
+db.employee.find({active:"true}, {name:1}).limit(1)
+
+
+//show 2nd employee with status active true
+
+db.employee.find({active:"true}, {name:1}).limit(1).skip(1)
+
+----------------------------------------------------------------------------------
+
+3. UPDATE
+
+//update only one matching doc
+db.collection.updateOne(<filter>, <update>)
+
+//updates all
+db.collection.updateMany(<filter>, <update>)
+
+/eg- update salary of employee named keshav
+db.employee.updateOne({name:"Keshav"}, {$set: {salary:95000}})
+
+--------------------------------------------------------------------------
+
+4. DELETE
+
+db.collection.deleteMany(criteria)
+
+//delete employees with type = fullstack
+db.employee.deleteMany({type;"fullstack})
